@@ -330,21 +330,18 @@ TrelloPowerUp.initialize({
   'card-badges': function(t, options){
     return getBadges(t);
   },
-  'card-buttons': function(t, options) {
-    return [{
-      // usually you will provide a callback function to be run on button click
-      // we recommend that you use a popup on click generally
-      icon: GRAY_ICON, // don't use a colored icon here
-      text: 'Open Popup',
-      callback: cardButtonCallback
-    }, {
-      // but of course, you could also just kick off to a url if that's your thing
-      icon: GRAY_ICON,
-      text: 'Just a URL',
-      url: 'https://developers.trello.com',
-      target: 'Trello Developer Site' // optional target for above url
-    }];
-  },
+'card-buttons': function(t, options) {
+  return [{
+    icon: GRAY_ICON,
+    text: 'Log Time',
+    callback: async function(t) {
+      // open Harvest "New Time Entry" page in a new tab
+      window.open('https://t2e.harvestapp.com/time/day/today', '_blank');
+      return t.closePopup();
+    }
+  }];
+},
+
   'card-detail-badges': function(t, options) {
     return getBadges(t);
   },
